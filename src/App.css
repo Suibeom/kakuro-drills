@@ -1,38 +1,107 @@
-.App {
-  text-align: center;
+.container {
+  display:flex;
+  height: 100vh;
+  width: 100vw;
+  background-color:  black;
+  color: gainsboro;
+  text-shadow: 0px 1px 1px black;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.ui-main {
+  background-color: rgb(68, 97, 152);
+  border-color: gray;
+  border-style: double;
+  border-width: 0rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ui-foreground {
+  box-shadow: 1px 2px 0px black;
+  border-radius: 1px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.scorecard {
+  flex: 1;
+  margin-top: 30px;
+  padding: 10px 20px;
+  border-top-width: 0.5em;
+  border-top-width: 0.5em;
+
+}
+
+.score {
+  display:flex;
+  justify-content: flex-start;
+}
+
+.solutions {
+  display:flex;
+  justify-content: flex-start;
+  border-right: 1px solid black
+}
+
+.solution {
+  min-height: 10px;
+  min-width: 10px;
+  margin: 5px;
+}
+
+.found-true {
+  background-color: teal;
+}
+
+.found-false {
+  background-color: gray;
+}
+
+.misses {
+  display:flex;
+  justify-content: flex-start;
+}
+
+.miss {
+  min-height: 10px;
+  min-width: 10px;
+  margin: 5px;
+  background-color: red;
+}
+
+.gamefield {
+  flex: 5;
   display: flex;
   flex-direction: column;
+  border-left-width: 0.5em;
+  border-top-width: 0.5em;
+
+
+  border-radius: 1em 0em 0em 0em;
+  padding: 10px 20px;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.digit{
+  background-color: chocolate;
+  min-height: 200px;
+  min-width: 200px;
+}
+
+.entry {
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 200px;
+  min-width: 200px;
+  padding-left: 100px;
+  background-color: cyan;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.guess-digit {
+  min-width: 25px;
+  min-height: 25px;
+  margin: 15px;
+  background-color: darkblue;
 }
