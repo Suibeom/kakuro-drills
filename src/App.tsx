@@ -1,13 +1,19 @@
 import React from 'react';
 import './App.css';
 import { array, Digit } from './helpers';
-import { Game, GameProps } from './GameProps';
+import { Game, GameProps, GameUpdate } from './GameProps';
 
 class App extends React.Component {
   state: Game;
+  processGuess: (guess: Digit[]) => void;
   constructor(props: {}) {
     super(props);
     this.state = new Game();
+    this.processGuess = (guess_digits: Digit[]) =>
+    (this.setState((state: Game) => { 
+      const guess = state.processGuess(guess_digits);
+      return { state: {...state}} 
+    }));
   }
   render() {
     return (
@@ -21,8 +27,7 @@ class App extends React.Component {
       </div>
     );
   }
-  processGuess = (guess_digits: Digit[]) =>
-    (this.setState((state: Game) => { return { state: state.processGuess(guess_digits) } }));
+  
 }
 
 
@@ -104,11 +109,11 @@ class Gamefield extends React.Component {
   constructor(props: GameProps) {
     super(props);
     this.props = props;
-    this.state = { current_guess: { guess_digits: ['1', '2'], size: this.props.game.num_boxes() } }
+    this.state = { current_guess: { guess_digits: ['1', '2'], size: this.props.game.current_round } }
   }
   render() {
-    const boxes = this.props.game.num_boxes();
-    const target = this.props.game.target_sum();
+    const boxes = this.props.game.settings.boxes;
+    const target = this.props.game.current_round;
     const guess_size = this.state.current_guess.size;
     const guess_digits = this.state.current_guess.guess_digits;
     return <div className="ui-main gamefield">

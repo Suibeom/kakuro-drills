@@ -22,6 +22,15 @@ function fillFromDigits(digits: Digit[]): KakuroFill {
     return { digits: fill };
 }
 
+function sumPartition(partition: number) {
+    const bits = partition.toString(2);
+    var sum = 0;
+    for (var i = 0; i < 9; i++) {
+        bits[i] === '1' && (sum += Math.pow(2, i));
+    }
+    return sum;
+}
+
 function getSolutions(target_sum: number, boxes: number): KakuroFill[] {
     const solutions = [];
     console.log("Generating Solutions");
@@ -36,15 +45,6 @@ function getSolutions(target_sum: number, boxes: number): KakuroFill[] {
         console.log(i);
     }
     return [];
-}
-
-function sumPartition(partition: number) {
-    const bits = partition.toString(2);
-    var sum = 0;
-    for (var i = 0; i < 9; i++) {
-        bits[i] === '1' && (sum += Math.pow(2, i));
-    }
-    return sum;
 }
 
 interface SolutionCheckResult {
@@ -119,16 +119,10 @@ export class Game {
         this.current_round = 18;
         this.rounds = [];
     }
-    num_boxes() {
-        return this.settings.boxes;
-    }
-    target_sum() {
-        return this.current_round;
-    }
     processGuess(guess: Digit[]): GameUpdate {
         const fill = fillFromDigits(guess);
         const result = this.solutions.processUserGuess(fillFromDigits(guess));
-
+        
         if (result.new_solution) {
             return { solutions: this.solutions };
         }
